@@ -5,6 +5,8 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from job_listing.jobs import views
+
 urlpatterns = [
     url(r"^$", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     url(
@@ -20,6 +22,7 @@ urlpatterns = [
         include("job_listing.users.urls", namespace="users"),
     ),
     url(r"^accounts/", include("allauth.urls")),
+    url(r'^jobs/', include("job_listing.jobs.urls") )
     # Your stuff: custom urls includes go here
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+	{% block title %} This is the jobs app landpage {% endblock %}
+
+	{% block content %}
+
+		{% if auth %}
+			{% if key %}
+				{% for k in key %}
+				<div class="well">
+					<h1>{{k.title}}</h1>
+					<p>{{k.body}}</p>
+					<p>Author: {{k.owner}}</p>
+					<p>Contact: {{k.owner.email}}</p>
+					<hr>
+				</div>
+				{% endfor %}
+			{% endif %}
+
+				<h3>
+					<a class="nav-link" href="{% url 'newjob' %}">New Post</a>
+				</h3>
+		{% else %}
+			<h2>you must be logged in to see the job postings</h2>
+		{% endif %}
+	{% endblock %}

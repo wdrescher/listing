@@ -7,12 +7,17 @@
 		{% if auth %}
 			{% if key %}
 				{% for k in key %}
-				<div class="well">
-					<h1>{{k.title}}</h1>
-					<p>{{k.body}}</p>
-					<p>Author: {{k.owner}}</p>
-					<p>Contact: {{k.owner.email}}</p>
-					<hr>
+				<div class="card" style="width: 50rem center">
+					<div class="card-body">
+						<div class="card-title">
+							<h1>{{k.title}}</h1>
+						</div>
+						<p>{{k.body}}</p>
+						<div class="card-text">
+							<p>Author: {{k.owner}}</p>
+							<p>Contact: {{k.owner.email}}</p>
+						</div>
+					</div>
 				</div>
 				{% endfor %}
 			{% endif %}

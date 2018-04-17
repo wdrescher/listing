@@ -6,3 +6,4 @@ class JobPosting(models.Model):
     title = models.CharField(max_length=40)
     body = models.CharField(max_length=500)
     owner = models.ForeignKey(User, on_delete='CASCADE')
+    active = models.BooleanField()

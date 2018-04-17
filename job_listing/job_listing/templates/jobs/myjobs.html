@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+	{% block title %}
+		My Jobs
+	{% endblock %}
+
+	{% block content %}
+		{% if listings %}
+			<h1>My Jobs</h1>
+			{% for l in listings %}
+				<div class="card" style="width: 50rem center">
+					<div class="card-body">
+						<div class="card-title">
+							<h1>{{l.title}}</h1>
+						</div>
+						<p>{{l.body}}</p>
+						{{l.pk}}
+						<a class="btn btn-outline-danger" href="{% url 'delete' l.pk %}" role="button">Delete</a>
+						<!-- <a class="btn btn-outline-danger" href="#" role="button">Delete</a> -->
+					</div>
+				</div>
+			{% endfor %}
+		{% else %}
+			<h1>You Have No Jobs</h1>
+		{% endif %}
+	{% endblock %}

@@ -22,7 +22,9 @@ urlpatterns = [
         include("job_listing.users.urls", namespace="users"),
     ),
     url(r"^accounts/", include("allauth.urls")),
-    url(r'^jobs/', include("job_listing.jobs.urls") )
+    url(r'^jobs/',
+        include("job_listing.jobs.urls",),
+    )
     # Your stuff: custom urls includes go here
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT

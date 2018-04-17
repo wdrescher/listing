@@ -10,7 +10,7 @@ from .forms import NewJobListing
 def land(request):
     template = 'jobs/landpage.html'
     context = {
-        'key': JobPosting.objects.all()
+        'key': JobPosting.objects.filter(active=True)
     }
     if request.user.is_authenticated:
         context['auth'] = 'Validated'
@@ -30,3 +30,20 @@ def new_job_listing(request):
             return land(request)
     context = {'form': form}
     return render(request, template, context)
+def myjobs(request):
+    template = "jobs/myjobs.html"
+    query_result = JobPosting.objects.filter(owner=request.user).filter(active=True)
+    # if query_result <= 0:
+    #     query_result = 'oops'
+    context = {
+        'listings': query_result
+    }
+    return render(request, template, context)
+
+def deletejob(request, job_posting_id):
+    # deactivate instance with posting id matching job_posting_id
+    job_post = JobPosting.objects.filter(pk = job_posting_id)
+    for j in job_post:
+        j.active = False
+        j.save()
+    return myjobs(request)

@@ -26,10 +26,12 @@ def new_job_listing(request):
             post.title  = request.POST['title']
             post.body = request.POST['body']
             post.owner = request.user
+            post.active = True
             post.save()
             return land(request)
     context = {'form': form}
     return render(request, template, context)
+
 def myjobs(request):
     template = "jobs/myjobs.html"
     query_result = JobPosting.objects.filter(owner=request.user).filter(active=True)
